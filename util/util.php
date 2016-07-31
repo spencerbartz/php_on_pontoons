@@ -343,10 +343,6 @@
 		$result    = $operands[0] * $operands[1] - $operands[2];
 		return array($challenge, $result);
 	}
-
-	function print_copy_right () {
-		echo "&copy;" . date("Y");
-	}
 	
 	// Debug Functions
 	function alert($str) {

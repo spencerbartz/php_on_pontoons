@@ -1,7 +1,7 @@
 <?php
     include_once "../util/util.php";
         
-    class AppModel
+    class AbstractModel
     {
         public $fields;
         public $tableName;

@@ -19,7 +19,7 @@
 				</div>
 				
 				<div id="copyright" class="container">
-					<? print_copy_right(); ?>
+					<? print_copyright(); ?>
 				</div>
 			
 		</div>

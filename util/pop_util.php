@@ -36,16 +36,19 @@
 		println('<html xmlns="http://www.w3.org/1999/xhtml">');
 		println('<head>');
 		println('<meta name="Description" content="Information architecture, Web Design, Web Standards." />');
-		println('<meta name="Keywords" content="spencer, bartz, portfolio, software development, software engineering, programming, IT" />');
+		println('<meta name="Keywords" content="spencer, bartz, software development, software engineering, programming, IT" />');
 		println('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 		println('<meta name="Distribution" content="Global" />');
 		
 		$path =  get_relative_root_path($file);
 		
-		println('<link rel="stylesheet" href="' . $path . 'css' . $DS . 'BluePigment.css" type="text/css" />');
-		println('<link rel="shortcut icon" href="' . $path . 'images' . $DS . 'favicon.ico" />');
-		println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'jquery-1.11.2.min.js"></script>');
-		println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'util.js"></script>');
+		//	<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+	//<link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
+	//<link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+	//	
+	//	println('<link rel="shortcut icon" href="' . $path . 'images' . $DS . 'favicon.ico" />');
+	//	println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'jquery-1.11.2.min.js"></script>');
+	//	println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'util.js"></script>');
 	}
 
 	//Print the navigation bar at the top of the page with links to all project categories

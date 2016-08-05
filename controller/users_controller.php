@@ -10,10 +10,7 @@
         
         public function create()
         {
-            $user_model;
-            
-            if(isset($_POST))
-               print_r($_POST);
+
         }
         
         public function index()

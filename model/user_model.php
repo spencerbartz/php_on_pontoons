@@ -10,7 +10,6 @@
             parent::construct_if_not_exists();
         }
         
-         //TODO Move thie ORM grunt work up into Abstract model
         public static function find($id)
         {
             $row = parent::find($id, UserModel::get_table_name());
@@ -34,31 +33,5 @@
             $um->id = $row["id"];
             return $um;
         }
-    }
-    
-   //Test
-    function  user_model_test($delete)
-    {
-        $user = new UserModel("Test User");
-        $user->save();
-        $user->print_fields();
-    
-        
-        //if($delete)
-          //  $user->delete();
-    
-        $um = UserModel::find(UserModel::first()->id);
-        $um->print_fields();
-
-        $um = UserModel::find(UserModel::last()->id);
-        $um->print_fields();
-        
-        UserModel::find(999);
-    }
-        
-    if(isset($argv[1]))
-    {
-        $delete = isset($argv[2]) ? FALSE : TRUE;
-        user_model_test($delete);
     }
 ?>

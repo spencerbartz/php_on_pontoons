@@ -1,33 +1,33 @@
 <?php
-    include "util/util.php";
-    include_once "controller/abstract_controller.php";
-    $siteRootPath = get_relative_root_path	(__FILE__);
-    print_page_dec($siteRootPath);
+//http://stackoverflow.com/questions/16388959/url-rewriting-with-php
+define( 'INCLUDE_DIR', dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR);
+
+$rules = array( 
+    'picture'   => "/picture/(?'text'[^/]+)/(?'id'\d+)",    // '/picture/some-text/51'
+    'album'     => "/album/(?'album'[\w\-]+)",              // '/album/album-slug'
+    'category'  => "/category/(?'category'[\w\-]+)",        // '/category/category-slug'
+    'page'      => "/page/(?'page'about|contact)",          // '/page/about', '/page/contact'
+    'post'      => "/(?'post'[\w\-]+)",                     // '/post-slug'
+    'home'      => "/"                                      // '/'
+);
+
+$uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
+$uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
+$uri = urldecode( $uri );
+
+foreach ( $rules as $action => $rule ) {
+    if ( preg_match( '~^'.$rule.'$~i', $uri, $params ) ) {
+        /* now you know the action and parameters so you can 
+         * include appropriate template file ( or proceed in some other way )
+         */
+
+        include(INCLUDE_DIR . $action . '.php' );
+
+        // exit to avoid the 404 message 
+        exit();
+    }
+}
+
+// nothing is found so handle the 404 error
+include( INCLUDE_DIR . '404.php' );
 ?>
-</head>
-</head
-<body>
-<div id="header-wrapper">
-	 <h1>Users</h1>	
-    <div id="header" class="container">
-    </div>
-<body>
-	<div id="header-wrapper">
-		<div id="header" class="container">
-			<h1></h1> PUT YOUR LOGO OR SOMETHING HERE </h1>
-		</div>
-		
-		<div id="banner" class="container">
-			<div class="title">
-				<h2>Sample Content Title</h2>
-					<span class="byline">The possibilities are endless</span>
-			</div>
-		</div>
-			
-		<div class="questions">
-			
-		</div>
-	</div>
-	<?php print_copyright(); ?>
-	</body>
-</html>

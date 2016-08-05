@@ -1,6 +1,6 @@
 <?php
-    include_once "print_util.php";
-    include_once "url_util.php";
+    include "util/print_util.php";
+    include "util/url_util.php";
     
     class Router 
     {
@@ -33,6 +33,13 @@
             //trim off final ampersand
             $url_attr_str = substr($url_attr_str, 0, strlen($url_attr_str) - 1);           
             return $url_attr_str;
+        }
+        
+        public static function route_url($url)
+        {
+            $url_parts = parse_url($url);
+            $path = $url_parts["path"];
+            echo $path;
         }
     }
 ?>

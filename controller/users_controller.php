@@ -10,12 +10,13 @@
         
         public function create()
         {
-
+            $user = new UserModel("billy bob");
+            $user.save();
         }
         
         public function index()
         {
-            
+            echo "Hiya Buddy";
         }
         
         public function destroy()

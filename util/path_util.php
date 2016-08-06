@@ -1,8 +1,8 @@
 <?php
-	// Find out the app root path from any file path
-	function get_relative_root_path($file_path)
+	// Find out the app root path from any file or URL path
+	function get_relative_root_path($file_path, $url_path = false)
 	{
-		$DS = DIRECTORY_SEPARATOR;
+		$DS = $url_path ? "/" : DIRECTORY_SEPARATOR;
 		$path_parts = explode($DS, dirname($file_path));
 		$config_file = dirname(__FILE__) . $DS . "config.json";
 		$json_obj = json_decode(file_get_contents($config_file), true);

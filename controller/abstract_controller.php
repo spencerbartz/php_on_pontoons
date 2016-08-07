@@ -35,7 +35,8 @@
                 
                 $controller = new $controller_name();
                 $action = $_GET["action"];
-                $controller->$action();
+                $id = $_GET["id"];
+                $controller->$action($id);
             }        
         }
     }

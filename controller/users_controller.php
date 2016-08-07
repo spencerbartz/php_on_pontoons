@@ -10,18 +10,22 @@
         
         public function create()
         {
-            $user = new UserModel("billy bob");
-            $user.save();
+            echo "Create User";
         }
         
         public function index()
         {
-            echo "Hiya Buddy";
+            echo "User Index";
         }
         
         public function destroy()
         {
-            
+            echo "Destroy User with id: " . $_GET["id"];
+        }
+        
+        public function display()
+        {
+            echo "Display User with id: " . $_GET["id"];
         }
         
         public function new_user_landing()
@@ -32,6 +36,11 @@
         public static function to_string()
         {
             return "users_controller";
+        }
+        
+        public function update()
+        {
+            echo "Update User with id: " . $_GET["id"];
         }
     }
     

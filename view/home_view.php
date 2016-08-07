@@ -14,8 +14,11 @@
 				<div id="copyright" class="container">
 					An MVC framework by Spencer Bartz
 				</div>
-				<a href="users">Create a User</a>
+				<div>
+					<a href="users">Go to users page</a>
+				</div>
 			</div>
 		</div>
+		
 	</body>
 </html>

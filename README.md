@@ -1,4 +1,4 @@
-# php_on_pylons
+# php_on_...
 An MVC framework for PHP, loosely based on Ruby on Rails.
 
 After using Rails for over a year I started wondering how it worked internally.

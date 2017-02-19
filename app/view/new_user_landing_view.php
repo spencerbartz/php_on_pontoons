@@ -1,24 +1,24 @@
-<?php 
-
+<?php
+    $rel_root_path = get_relative_root_path(__FILE__);
+    print_page_dec($rel_root_path);
 ?>
+
 </head>
 	<body>
 		<div id="header-wrapper">
-			
+
 			<div id="header" class="container">
-				
+
 				<div id="logo">
-					<h1>Welcome to PHP on Pylons!</h1>
+					SOME CONTENT
 				</div>
-				
+
 				<div id="copyright" class="container">
-					An MVC framework by Spencer Bartz
+					OTHER CONTENT
 				</div>
-				<div>
-					<a href="users">Go to users page</a>
-				</div>
+
 			</div>
 		</div>
-		
+		<? print_copy_right(); ?>
 	</body>
 </html>

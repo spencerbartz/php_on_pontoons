@@ -1,23 +1,23 @@
-<?php		
+<?php
 	$default_locale = "en_US";
 	date_default_timezone_set("America/Los_Angeles");
-	set_language();
-	
-	function set_language()
-	{
-		$locale = isSet($_GET["locale"]) ? $_GET["locale"] : $GLOBALS["default_locale"];
-		$locale = $locale . ".UTF-8";
-		
-		putenv("LC_ALL=$locale");
-		setlocale(LC_ALL, $locale);
-		bindtextdomain("messages", "./locale");
-		textdomain("messages");
-	}
+	// set_language();
+	//
+	// function set_language()
+	// {
+	// 	$locale = isSet($_GET["locale"]) ? $_GET["locale"] : $GLOBALS["default_locale"];
+	// 	$locale = $locale . ".UTF-8";
+	//
+	// 	putenv("LC_ALL=$locale");
+	// 	setlocale(LC_ALL, $locale);
+	// 	bindtextdomain("messages", "./locale");
+	// 	textdomain("messages");
+	// }
 
 	function print_header($file)
 	{
 		$path = get_relative_root_path($file);
-	
+
 		println('<h1 id="logo-text"><a href="' . $path . 'index.php">' . _("Spencer") . "<span>" . _("Bartz") . '</span></a></h1>');
 		println('<h2 id="slogan">' .  _("Portfolio Website") . '</h2>');
 		println('<div id="header-links">');
@@ -35,13 +35,13 @@
 		println('<meta name="Keywords" content="spencer, bartz, software development, software engineering, programming, IT" />');
 		println('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 		println('<meta name="Distribution" content="Global" />');
-		
+
 		$path =  get_relative_root_path($file);
-		
+
 		//	<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
 	//<link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
 	//<link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
-	//	
+	//
 	//	println('<link rel="shortcut icon" href="' . $path . 'images' . $DS . 'favicon.ico" />');
 	//	println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'jquery-1.11.2.min.js"></script>');
 	//	println('<script type="text/javascript" src="' . $path . 'js' . $DS . 'util.js"></script>');
@@ -55,29 +55,29 @@
 		//Parallel Arrays to hold user names and internal names
 		$fileNames = array( "index.php", "js" . $DS . "jsindex.php", "php" .  $DS . "phpindex.php", "applications" . $DS . "applicationindex.php", "python" . $DS . "pyindex.php",  "c" . $DS . "cindex.php");
 		$dispNames = array(_("Home"), _("JavaScript"), _("Full Stack  LAMP Apps"), _("Java Apps"), _("Python"), _("C Programming"));
-			
+
 		$path = get_relative_root_path($file);
 		$parts = explode($DS, $file);
-		
+
 		$thisFile = $parts[count($parts) - 1];
 		println('<ul> ');
-			
+
 		for($i = 0; $i < count($fileNames); $i++)
 		{
 			//Just get the file name, not the folder it might be in
 			$fileName = explode($DS, $fileNames[$i]);
 			$fileName = $fileName[count($fileName) - 1];
 			$li = "<li>";
-				
+
 			//We want to highlight the menu item associated with the current page
 			if(strcmp($thisFile, $fileName) == 0)
 				$li = '<li id="current">';
-					
+
 			println($li . '<a href="' . $path  . $fileNames[$i] . '">');
 			println($dispNames[$i]);
-			println('</a></li>');	
+			println('</a></li>');
 		}
-			
+
 		println('</ul> ');
 	}
 
@@ -95,7 +95,7 @@
 		println("</form>");
 	}
 
-	//For building links from folder names that are stored in 
+	//For building links from folder names that are stored in
 	//unix-safe formats (i.e. all lowercase with underscores instead of spaces. "my_project" -> "My Project")
 	//Receives: String - Text (a folder name)
 	//Returns: String - Final text to be displayed as link
@@ -103,13 +103,13 @@
 	{
 		//replace underscores with spaces
 		$link_text = str_replace("_", " ", $link_text);
-		
+
 		//capitalize the first letter of each word
 		$pieces = explode(" ", $link_text);
-		
+
 		for($i = 0; $i < count($pieces); $i++)
 			$pieces[$i] = strtoupper($pieces[$i][0]) . substr($pieces[$i], 1);
-			
+
 		return implode(" ", $pieces);
 	}
 
@@ -117,9 +117,9 @@
 	function print_project_links()
 	{
 		$dir = ".";
-		if (is_dir($dir)) 
+		if (is_dir($dir))
 		{
-			if ($dh = opendir($dir)) 
+			if ($dh = opendir($dir))
 				{
 					//print table header
 					println('<table>');
@@ -128,27 +128,27 @@
 					println('<th>Link</th>');
 					println('<th>Description</th>');
 					println('</tr>');
-					
+
 					$rowSwitch = 0;
 					$ignoreDirs = array(".", "..", "server", "assets", "source");
-					
+
 					//print links to projects
 					while(($file = readdir($dh)) !== false)
 					{
 						$lastUpdated = "12/29/2014";
-						
+
 						if(is_dir($file) && !in_array($file, $ignoreDirs) && !ends_with($file, "_bak"))
 						{
 							$lastUpdated = date ("m/d/Y", filemtime($file . "/index.php"));
 							$desc = fopen($file . "/desc.txt", "r");
 							$descText = "";
-							
-							if($desc) 
+
+							if($desc)
 							{
-								while(($buffer = fgets($desc, 4096)) !== false) 
+								while(($buffer = fgets($desc, 4096)) !== false)
 									$descText .= $buffer;
-									
-								if (!feof($desc)) 
+
+								if (!feof($desc))
 									$descText = "No description available";
 								fclose($desc);
 							}
@@ -156,18 +156,18 @@
 							{
 								$desc = "No description available";
 							}
-							
+
 							//Output a row in the table
 							if($rowSwitch % 2 == 0)
 								echo '<tr class="row-a">';
 							else
 								echo '<tr class="row-b">';
-								
+
 							$rowSwitch++;
-						
+
 							echo '<td class="first">' . $lastUpdated . '</td>';
 							echo '<td><a  href ="' . $file . '/index.php"><strong>' .  format_link($file) . '</strong></a></td>';
-							echo '<td>' .  $descText . '</td>';		
+							echo '<td>' .  $descText . '</td>';
 							echo '</tr>';
 						}
 					}
@@ -181,10 +181,10 @@
 	{
 		$mysqli = get_mysqli_connection("newsdb");
 		$sql = "select posttext, hashtags, dateposted from newsdb.posts order by dateposted desc";
-		
+
 		if(!$res = $mysqli->query($sql))
 			die("Failed to select post: (" . $mysqli->errno . ") " . $mysqli->error);
-		
+
 		if($res->num_rows > 0)
 		{
 			while($row = $res->fetch_assoc())
@@ -195,7 +195,7 @@
 				println('<p class="post-footer align-right"> <span class="date">Date Posted: ' . $row['dateposted'] . '</span> </p>');
 				println('</div>');
 			}
-		}	
+		}
 	}
 
 	function print_footer($file)
@@ -247,20 +247,20 @@
 	}
 
 	function last_updated($filename) {
-		if (file_exists($filename)) 
+		if (file_exists($filename))
 			println( _("Last updated: ") . date ("F d, Y H:i:s", filemtime($filename)) . " PST");
 	}
 
 	function create_thumbnail($imgFile, $tnPath, $thumbWidth = 100)
 	{
 		$info = pathinfo($imgFile);
-		
+
 		if(strtolower($info['extension']) == 'jpg' || strtolower($info['extension']) == 'jpeg')
 		{
 			$img = imagecreatefromjpeg($imgFile);
 			$width = imagesx($img);
 			$height = imagesy($img);
-			
+
 			// calculate thumbnail size
 			$new_width = $thumbWidth;
 			$new_height = floor( $height * ( $thumbWidth / $width ) );
@@ -279,7 +279,7 @@
 			$img = imagecreatefromgif($imgFile);
 			$width = imagesx($img);
 			$height = imagesy($img);
-			
+
 			// calculate thumbnail size
 			$new_width = $thumbWidth;
 			$new_height = floor( $height * ( $thumbWidth / $width ) );
@@ -298,7 +298,7 @@
 			$img = imagecreatefrompng($imgFile);
 			$width = imagesx($img);
 			$height = imagesy($img);
-			
+
 			// calculate thumbnail size
 			$new_width = $thumbWidth;
 			$new_height = floor( $height * ( $thumbWidth / $width ) );
@@ -318,22 +318,22 @@
 	{
 		if (!file_exists($dir))
 			return true;
-	
+
 		if (!is_dir($dir))
 			return unlink($dir);
-		
+
 		foreach (scandir($dir) as $item)
 		{
 			if ($item == '.' || $item == '..')
 				continue;
-	
+
 			if (!delete_directory($dir . DIRECTORY_SEPARATOR . $item))
 				return false;
 		}
-	
+
 		return rmdir($dir);
 	}
-	
+
 	// Instead of a captcha, let them do arithmetic!
 	function generate_bot_check()
 	{
@@ -342,12 +342,12 @@
 		$result    = $operands[0] * $operands[1] - $operands[2];
 		return array($challenge, $result);
 	}
-	
+
 	// Debug Functions
 	function alert($str) {
 		echo '<script type="text/javascript">alert("' . $str . '");</script>';
 	}
-	
+
 	function console_log($str) {
 		echo 'console.log("' . $str . '");';
 	}

@@ -3,6 +3,8 @@
 	define("CONTROLLER_DIR", dirname( __FILE__ ) . SLASH . 'controller' . SLASH);
 	define("UTIL_DIR", dirname(__FILE__) . SLASH . "util" . SLASH);
 	define("IMG_DIR", dirname(__FILE__) . SLASH . "img" . SLASH);
+	define("APP_NAME", "Your Application's Name");
+
 	include "util/string_util.php";
 	include "util/path_util.php";
 	include "util/dbconnect.php";
